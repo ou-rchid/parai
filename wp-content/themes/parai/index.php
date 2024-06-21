@@ -1,42 +1,46 @@
 <?php
-//get_header();
-?>
+/**
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package WordPress
+ * @subpackage Twenty_Twenty_One
+ * @since Twenty Twenty-One 1.0
+ */
 
-<div class="container mt-5">
-    <?php if (have_posts()) : ?>
-        <?php while (have_posts()) : the_post(); ?>
-            <div class="post">
-                <h1 class="bg-primary text-white p-3"><?php the_title(); ?></h1>
-                <div class="post-content mb-4">
-                    <?php the_content(); ?>
-                </div>
+get_header(); ?>
 
-                <div class="article-meta p-3 bg-light">
-                    <?php
-                    $article_author = get_post_meta(get_the_ID(), 'article_author', true);
-                    $article_publisher = get_post_meta(get_the_ID(), 'article_publisher', true);
-                    $article_pub_date = get_post_meta(get_the_ID(), 'article_pub_date', true);
-                    $article_instrument = get_post_meta(get_the_ID(), 'article_instrument', true);
-                    $article_duration = get_post_meta(get_the_ID(), 'article_duration', true);
-                    ?>
-                    
-                    <div class="row">
-                       
-                      
-                        
-
-                        
-
-                      
-                    </div>
-                </div>
-            </div>
-        <?php endwhile; ?>
-    <?php else : ?>
-        <p>No articles found.</p>
-    <?php endif; ?>
-</div>
+<?php if ( is_home() && ! is_front_page() ) : ?>
+	<header class="page-header alignwide">
+		<h1 class="page-title"><?php the_title(); ?></h1>
+	</header><!-- .page-header -->
+<?php endif; ?>
 
 <?php
-//get_footer();
-?>
+if ( have_posts() ) {
+
+	// Load posts loop.
+	while ( have_posts() ) {
+		the_post();
+
+		// get_template_part( 'template-parts/content/content', get_theme_mod( 'display_excerpt_or_full_post', 'excerpt' ) );
+	}
+
+	// Previous/next page navigation.
+	// twenty_twenty_one_the_posts_navigation();
+
+} else {
+
+	// If no content, include the "No posts found" template.
+	// get_template_part( 'template-parts/content/content-none' );
+	echo "No content found!";
+
+}
+
+get_footer();
