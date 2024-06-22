@@ -75,7 +75,7 @@
         //So lets add Lat Long manually (e.g., 35.210371049894775, -97.44536082024116). 
         //Once we have the Google Maps API key, authors can Drag the marker to set the exact location
         $cmb->add_field( array(
-            'name' => 'Location',
+            'name' => 'Location: Add Lang Lat manually. This works and it mimics the final option (below).',
             'desc' => 'Add Lat Long Manually',
             'id' => 'location_hardcoded',
             'type' => 'text',
@@ -87,7 +87,7 @@
         //To do so we are using the cmb_field_map plugin (https://github.com/mustardBees/cmb_field_map)
         //
         $cmb->add_field( array(
-            'name' => '',
+            'name' => 'Location: This does not work tight now. Will use this after we have the Google Maps API',
             'desc' => 'Drag the marker to set the exact location',
             'id' => 'location',
             'type' => 'pw_map',
