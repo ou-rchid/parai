@@ -71,12 +71,23 @@
             // 'closed'     => true, // Keep the metabox closed by default
         ) );
 
+        //We dont have Google Map API key yet. 
+        //So lets add Lat Long manually (e.g., 35.210371049894775, -97.44536082024116). 
+        //Once we have the Google Maps API key, authors can Drag the marker to set the exact location
+        $cmb->add_field( array(
+            'name' => 'Location',
+            'desc' => 'Add Lat Long Manually',
+            'id' => 'location_hardcoded',
+            'type' => 'text',
+        ) );
+
+
+        //Once we have the Google Map API key,
         //We want the authors to be able to enter the LOCATION (including Langitude and Lattitude) for the article. This will be used to list/visualize in maps api.
         //To do so we are using the cmb_field_map plugin (https://github.com/mustardBees/cmb_field_map)
         //
-        
         $cmb->add_field( array(
-            'name' => 'We dont have Google Map API key yet. So add Lat Long manually (e.g., 35.210371049894775, -97.44536082024116). Once we have the Google Maps API key, authors can Drag the marker to set the exact location',
+            'name' => '',
             'desc' => 'Drag the marker to set the exact location',
             'id' => 'location',
             'type' => 'pw_map',

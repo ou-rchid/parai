@@ -13,13 +13,9 @@
 
 ?>
 
-
-	<?php //get_template_part( 'template-parts/footer/footer-widgets' ); ?>
-
-
 		
 <footer class="">
-	&copy; <?php echo get_bloginfo( 'name' ); ?> Lab <?php echo date('Y'); ?>
+	&copy; <?php echo get_bloginfo( 'name' ); ?> <?php echo date('Y'); ?>
 </footer>
 
 

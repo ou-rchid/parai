@@ -4,15 +4,16 @@ function add_style_script()
 {
     wp_enqueue_style( 'bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
     wp_enqueue_style( 'parai_style', get_stylesheet_uri() );
+    
+    wp_enqueue_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?&key=&callback=initMap', array(), '', true); // ADD API key once you get it from Zoe
     wp_enqueue_script( 'bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array('jquery'), null, true );
     wp_enqueue_script( 'parai_script', get_template_directory_uri() . '/scripts.js', array('jquery'), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'add_style_script');
 
-
 /**
- * We will be using Google MAP AI to map the "parai articles"  
- * The function below is to make the API accessible throughout the site.
+ * We will be using Google MAP AI to map the "articles"  
+ * The function below is to make the API accessible in WP-Admin.
  */
 function pw_google_api_key() {
 	return ''; //Insert the API key within ''. Ask Zoe to provide API key.See how to get an API key at: https://developers.google.com/maps/documentation/javascript/get-api-key
