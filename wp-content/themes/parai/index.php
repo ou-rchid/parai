@@ -62,7 +62,7 @@
       zoom="4"
       map-id="DEMO_MAP_ID"
       style="height: 400px"
-    >
+>
       <gmp-advanced-marker
         position="37.4220656,-122.0840897"
         title="Mountain View, CA"
