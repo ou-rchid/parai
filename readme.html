@@ -2,11 +2,26 @@
 Activate the "parai" theme (if has not been activated) under Appearance > themes.
 Activate the plugins "CMB2" and "CMB2 Field Type: Google Maps" under Admin > Plugins.
 
---Create Articles
+--Create 10 dummy Articles
 Add new Article under Articles > Add New
-Add title, some description, images, videos and a featured image (on the right sidebar)
+Add title, some description, images, videos and a "featured image" (on the right sidebar)
 Notice 2 custom meta boxes called "Location:" at the bottom. 
-The first Location works and is a temporary solution until we get the Google Maps API.
+The first "Location:" works and is a temporary solution until we get the Google Maps API.
+For each Article, add different Lat Long values based on places in India (e.g., 13.799306828552597, 77.4906449858703). You can copy the lat long values by clicking a place in google map. right click on the marker and click the first option in the popup/menu.
+Save article
+
+** Check wp-content > themes > parai > functions.php and cpt_articles.php to se how this is coded **
+
+
+--The front-end   
+The Articles are shown in the frontend as cards.
+There is a map at the bottom. 
+The map contains an example interaction. When the red marker is clicke, additional information is displayed.
+** check wp-content > themes > index.php to see how this is coded **
+
+
+--YOUR TASK--
+- In the front end, Create marker for each Article in Googlge Map using the Lat Long Values of each of the article.
 
 
 
