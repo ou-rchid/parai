@@ -1,5 +1,6 @@
 
-// console.log(article_locations); // article_locations is declared in index.php
+// console.log(article_locations); 
+// article_locations is declared in index.php
 
 async function initMap() {
     // Request needed libraries.

@@ -28,12 +28,17 @@
         'posts_per_page' => -1
     );
     
+    // Array to store article data (title, location lat long, link, featured image) for the map
+    $articles = array();
+
     $query_articles = new WP_Query($args);
 
     // Loop through each article and extract necessary data (title, featured image, location lat long)
     if ($query_articles->have_posts()) :
         while ($query_articles->have_posts()) :
+            
             $query_articles->the_post();
+            // print_r(get_the_title());
             //the Lat Long values of each of the article
             $location = get_post_meta( get_the_ID(), 'location_hardcoded', true );
             $lat_lng = explode(',', $location);
@@ -57,10 +62,6 @@
             //     $videos[] = wp_get_attachment_url($video->ID);
             // }
 
-            
-            // Array to store article data (title, location lat long, link, featured image) for the map
-            $articles = array();
-
             // Add location data to the array if both latitude and longitude are available
             // if ($lat && $lng) {
                 $articles[] = array(
@@ -75,6 +76,9 @@
                 );
             // }
         endwhile;
+
+        // print_r($articles);
+
     endif;
     wp_reset_postdata();
 ?>
@@ -90,50 +94,6 @@
 
 
 
-
-
-<!-- the following code will give you the list of articles in the html cards -->
-<?php /*
-    //In this file we want to show the "articles post type" in map (e.g., zillow)
-    // How to query a custom post types: https://developer.wordpress.org/plugins/post-types/working-with-custom-post-types/
-
-    $loop = new WP_Query(
-        array(
-            'post_type'  => 'articles',
-        )
-    );
-    
-    //loop through the articles
-    while ( $loop->have_posts() ) {  $loop->the_post(); 
-    
-    //the Lat Long values of each of the article
-    $location = get_post_meta( get_the_ID(), 'location_hardcoded', true );
-    
-?>
-
-        <!-- Card for each of the Article -->
-        <div class="card" style="width: 18rem;">
-            
-            <?php if( has_post_thumbnail() ):?>
-                <a href="<?php the_permalink(); ?>"> 
-                    <?php the_post_thumbnail('medium', array('class' => 'card-img-top')); ?>
-                </a>
-            <?php endif; ?>
-
-            <div class="card-body">
-                <h5 class="card-title"><a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></h5>
-                <!-- Location of the Article. Lat Long value you aded while creating the article-->
-                <p class="card-text"><?php echo $location; ?></p>
-            </div>
-        </div>
-    
-<?php 
-wp_reset_postdata();
-    }
-    */
-?>
-
-
 <script>
     // this is the latest updates on how to include Google Map API
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
@@ -144,6 +104,7 @@ wp_reset_postdata();
   });
     // this variable holds the articles data that will be displayed in the map
     var article_locations = <?php echo json_encode($articles); ?>    
+    // console.log(article_locations);
 </script>
 
 
