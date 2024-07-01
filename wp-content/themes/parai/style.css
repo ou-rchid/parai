@@ -3,8 +3,11 @@
   height: calc(100vh - 120px) ;
 }
 
-.marker-window { max-width: 150px; }
-.marker-window h4{ font-size: small; padding:1em ;}
+.article_popup { max-width: 150px; }
+.article_popup h4{ font-size: small; padding:1em ;}
 
 .gm-style-iw-d, .gm-style-iw.gm-style-iw-c{margin: 0!important; padding: 0!important; overflow: hidden!important;}
-.gm-style-iw-chr{position: absolute; top: 0; left: 0; width: 100%;}
+.gm-style-iw-chr{position: absolute; top: 5px; right: 5px;}
+
+.gm-ui-hover-effect{background: black!important; border-radius: 50px; width: 30px!important; height: 30px!important;}
+.gm-ui-hover-effect > span{ margin: 3px!important; background-color: #fff;}

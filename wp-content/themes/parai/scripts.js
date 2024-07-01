@@ -11,12 +11,12 @@ async function initMap() {
         mapId: "4504f8b37365c3d0",
     });
 
-    
 
-    article_locations.forEach(article_location => {
+
+    for (const article_location of article_locations) {
 
         // Add marker to the map
-        const marker = new AdvancedMarkerElement({
+        const AdvancedMarkerElement = new google.maps.marker.AdvancedMarkerElement({
             position: { lat: parseFloat(article_location.lat), lng: parseFloat(article_location.lng) },
             map: map,
             title: article_location.title
@@ -24,7 +24,7 @@ async function initMap() {
 
         // Define the content of the info window
         const infoWindowContent = `
-            <div class="marker-window">
+            <div class="article_popup">
                 <a href="${article_location.link}">
                     <img src="${article_location.thumbnail}" style="">
                     <h4>${article_location.title}</h4>
@@ -37,14 +37,19 @@ async function initMap() {
             content: infoWindowContent
         });
 
-        // Open the info window when the marker is clicked
-        marker.addListener('click', function () {
-            infoWindow.open(map, marker);
+        // Open the info window when the marker is clicked        
+        AdvancedMarkerElement.addListener('click', function () {
+            infoWindow.open(map, AdvancedMarkerElement);
         });
 
-    });
+    };
+
 
 }
 
 initMap();
+
+
+
+
 

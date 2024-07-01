@@ -40,9 +40,7 @@
 
             $lat = isset($lat_lng[0]) ? trim($lat_lng[0]) : '';
             $lng = isset($lat_lng[1]) ? trim($lat_lng[1]) : '';
-            
-            $lnk = get_permalink(get_the_ID());
-            $thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+
             // $description = get_the_excerpt();
 
             // Get image URLs [How are these images going to shown in the popup bubble?]
@@ -64,18 +62,18 @@
             $articles = array();
 
             // Add location data to the array if both latitude and longitude are available
-            if ($lat && $lng) {
+            // if ($lat && $lng) {
                 $articles[] = array(
                     'lat' => $lat,
                     'lng' => $lng,
                     'title' => get_the_title(),
-                    'link' => $lnk,
-                    'thumbnail' => $thumbnail,
+                    'link' => get_permalink(get_the_ID()),
+                    'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'),
                     // 'description' => $description,
                     // 'images' => implode(',', $images), // comma-separated list of image URLs
                     // 'videos' => implode(',', $videos)  // comma-separated list of video URLs
                 );
-            }
+            // }
         endwhile;
     endif;
     wp_reset_postdata();
