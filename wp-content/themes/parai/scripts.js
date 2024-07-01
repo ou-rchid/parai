@@ -4,23 +4,24 @@
 
 async function initMap() {
     // Request needed libraries.
-    const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+    const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
     const map = new Map(document.getElementById("map"), {
         center: { lat: 13.036218781849394, lng: 77.69639402182948 }, // Center map on India
         zoom: 7,
         mapId: "4504f8b37365c3d0",
     });
 
-
+    let openInfoWindow = null;  // Keep track of the currently open info window
 
     for (const article_location of article_locations) {
 
         // Add marker to the map
-        const AdvancedMarkerElement = new google.maps.marker.AdvancedMarkerElement({
+        const marker = new google.maps.marker.AdvancedMarkerElement({
             position: { lat: parseFloat(article_location.lat), lng: parseFloat(article_location.lng) },
             map: map,
-            title: article_location.title
+            title: article_location.title,
+
         });
 
         // Define the content of the info window
@@ -39,12 +40,17 @@ async function initMap() {
         });
 
         // Open the info window when the marker is clicked        
-        AdvancedMarkerElement.addListener('click', function () {
-            infoWindow.open(map, AdvancedMarkerElement);
+        marker.addListener('click', function () {
+            // Close the currently open info window if there is one
+            if (openInfoWindow) {
+                openInfoWindow.close();
+            }
+            // Open the new info window
+            infoWindow.open(map, marker);
+            // Set the open info window to the current one
+            openInfoWindow = infoWindow;
         });
-
     };
-
 
 }
 
