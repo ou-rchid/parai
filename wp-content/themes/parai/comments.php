@@ -27,7 +27,6 @@ if ( post_password_required() ) {
                 'short_ping' => true,
                 'avatar_size' => 80,
                 'max_depth' => 3,
-                'walker'    => new Bootstrap_Comment_Walker
 			) );
 			?>
 		</ol>
