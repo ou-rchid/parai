@@ -18,6 +18,8 @@
 <?php get_header(); ?>
 
 <!-- Container for the map -->
+<h1>Header Goes Here</h1>
+
 <div class="container">
     <div id="map"></div>
 </div>
