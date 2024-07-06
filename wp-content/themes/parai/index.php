@@ -25,7 +25,7 @@
     // How to query a custom post types: https://developer.wordpress.org/plugins/post-types/working-with-custom-post-types/
     $args = array(
         'post_type' => 'articles',
-        // 'posts_per_page' => 5,
+        // 'posts_per_page' => -1,
         'paged'=>get_query_var('paged') ? get_query_var('paged') : 1,
     );
     
@@ -100,43 +100,49 @@
         
         <div class="col-sm-10">
          
-                <input
+                <!-- <input
                     id="pac-input"
                     class="controls form-control"
                     type="text"
                     placeholder="Search Area"
-                />
+                /> -->
         
 
             <div id="map"></div>
         </div>
 
         <div class="col-sm-2"> 
-            <div id="sidebar">this is sidebar</div>
+            <div id="sidebar"></div>
 
+
+            <!-- Pagination -->
             <?php
 
-        $total_pages = $query_articles->max_num_pages;
+                $total_pages = $query_articles->max_num_pages;
 
-        if ($total_pages > 1){
-    
-            $current_page = max(1, get_query_var('paged'));
-    
-            echo paginate_links(array(
-                'base' => get_pagenum_link(1) . '%_%',
-                'format' => '/page/%#%',
-                'current' => $current_page,
-                'total' => $total_pages,
-                'prev_text'    => __('« prev'),
-                'next_text'    => __('next »'),
-            ));
-        }    
+                if ($total_pages > 1){
+            
+                    $current_page = max(1, get_query_var('paged'));
+            
+                    echo paginate_links(array(
+                        'base' => get_pagenum_link(1) . '%_%',
+                        'format' => '/page/%#%',
+                        'current' => $current_page,
+                        'total' => $total_pages,
+                        'prev_text'    => __('« prev'),
+                        'next_text'    => __('next »'),
+                    ));
+                }    
             ?>
+
+
         </div>
 
        
     </div>
 </div>
+
+
 
 
 
