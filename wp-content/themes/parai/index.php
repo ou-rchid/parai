@@ -25,7 +25,8 @@
     // How to query a custom post types: https://developer.wordpress.org/plugins/post-types/working-with-custom-post-types/
     $args = array(
         'post_type' => 'articles',
-        'posts_per_page' => -1
+        // 'posts_per_page' => 5,
+        'paged'=>get_query_var('paged') ? get_query_var('paged') : 1,
     );
     
     // Array to store article data (title, location lat long, link, featured image) for the map
@@ -34,7 +35,10 @@
     $query_articles = new WP_Query($args);
 
     // Loop through each article and extract necessary data (title, featured image, location lat long)
-    if ($query_articles->have_posts()) :
+    if ($query_articles->have_posts()) :?>
+
+
+    <?php
         while ($query_articles->have_posts()) :
             
             $query_articles->the_post();
@@ -68,6 +72,7 @@
                     'lat' => $lat,
                     'lng' => $lng,
                     'title' => get_the_title(),
+                    'id' => get_the_ID(),
                     'link' => get_permalink(get_the_ID()),
                     'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'),
                     // 'description' => $description,
@@ -77,6 +82,11 @@
             // }
         endwhile;
 
+
+
+?>
+
+<?php
         // print_r($articles);
 
     endif;
@@ -87,8 +97,44 @@
 <!-- Container for the map -->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-10"><div id="map"></div></div>
-        <div class="col-sm-2"> List of the Articles will go here </div>
+        
+        <div class="col-sm-10">
+         
+                <input
+                    id="pac-input"
+                    class="controls form-control"
+                    type="text"
+                    placeholder="Search Area"
+                />
+        
+
+            <div id="map"></div>
+        </div>
+
+        <div class="col-sm-2"> 
+            <div id="sidebar">this is sidebar</div>
+
+            <?php
+
+        $total_pages = $query_articles->max_num_pages;
+
+        if ($total_pages > 1){
+    
+            $current_page = max(1, get_query_var('paged'));
+    
+            echo paginate_links(array(
+                'base' => get_pagenum_link(1) . '%_%',
+                'format' => '/page/%#%',
+                'current' => $current_page,
+                'total' => $total_pages,
+                'prev_text'    => __('« prev'),
+                'next_text'    => __('next »'),
+            ));
+        }    
+            ?>
+        </div>
+
+       
     </div>
 </div>
 
@@ -96,12 +142,12 @@
 
 <script>
     // this is the latest updates on how to include Google Map API
-  (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-    key: "",
-    v: "weekly",
+//   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    // key: "",
+    // v: "weekly",
     // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
     // Add other bootstrap parameters as needed, using camel case.
-  });
+//   });
     // this variable holds the articles data that will be displayed in the map
     var article_locations = <?php echo json_encode($articles); ?>    
     // console.log(article_locations);

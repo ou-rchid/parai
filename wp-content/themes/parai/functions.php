@@ -5,7 +5,8 @@ function add_style_script()
     wp_enqueue_style( 'bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
     wp_enqueue_style( 'parai_style', get_stylesheet_uri() );
     
-    // wp_enqueue_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key=&loading=async&libraries=maps,marker&v=beta', array(), '', true); // ADD API key once you get it from Zoe
+    wp_enqueue_script('googlemaps', 'https://maps.googleapis.com/maps/api/js?key=&loading=async&libraries=maps,marker,places&v=weekly', array(), '', true); // ADD API key once you get it from Zoe    
+
     wp_enqueue_script( 'bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', array('jquery'), null, true );
     wp_enqueue_script( 'parai_script', get_template_directory_uri() . '/scripts.js', array('jquery'), null, true );
 }

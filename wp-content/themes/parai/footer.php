@@ -14,7 +14,7 @@
 ?>
 
 		
-<footer class="">
+<footer class="container-fluid">
 	&copy; <?php echo get_bloginfo( 'name' ); ?> <?php echo date('Y'); ?>
 </footer>
 
