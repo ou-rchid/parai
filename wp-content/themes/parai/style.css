@@ -4,7 +4,7 @@
 }
 
 /* .article_popup { max-width: 150px; } */
-.article_popup h4{ font-size: small; padding:1em ;}
+.article_popup h5{ font-size: small; padding:1em ;}
 
 .gm-style-iw-d, .gm-style-iw.gm-style-iw-c{margin: 0!important; padding: 0!important; overflow: hidden!important;}
 .gm-style-iw-chr{position: absolute; top: 5px; right: 5px;}

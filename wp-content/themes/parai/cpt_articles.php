@@ -22,7 +22,7 @@
             'label'               => __( 'Articles', 'parai' ),
             'description'         => __( 'Article news and reviews', 'parai' ),
             'labels'              => $labels,
-            'supports'            => array( 'title', 'editor','template', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields'),
+            'supports'            => array( 'title', 'editor','template', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields','post-formats'),
             'taxonomies'          => array( 'category', 'post_tag' ),
             'hierarchical'        => true,
             'public'              => true,

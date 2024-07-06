@@ -55,12 +55,28 @@ async function initMap() {
         return `
             <div class="article_popup ${item.id}">
                 <a href="${item.link}">
-                    <img src="${item.thumbnail}" style="">
-                    <h4>${item.title}</h4>
+                    <img src="${item.thumbnail}" class="">
+                    <h4 class="m-0">${item.title}</h4>
                 </a>
             </div>
         `;
     };
+
+
+    // Function to generate info window content
+    const generateSidebarContent = (item) => {
+        return `
+        <div class="card ${item.id}">
+            <a href="${item.link}">
+                <img src="${item.thumbnail}" class="card-img-top">
+                <div class="card-body p-2">
+                    <h5 class="m-0">${item.title}</h5>
+                </div>
+            </a>
+        </div>
+    `;
+    };
+
 
     // Loop through an array of article locations to place markers on the map
     article_locations.forEach((item, index) => {
@@ -80,8 +96,11 @@ async function initMap() {
 
         // SIDEBAR
         const sidebarItem = document.createElement('div');
-        sidebarItem.className = 'item';
-        sidebarItem.innerHTML = infoWindowContent;
+        sidebarItem.className = 'item mb-3';
+
+        sidebarItemContent = generateSidebarContent(item);
+        sidebarItem.innerHTML = sidebarItemContent;
+
         document.getElementById('sidebar').appendChild(sidebarItem);
 
         handleSidebarItemMouseEvents(item, sidebarItem, marker);

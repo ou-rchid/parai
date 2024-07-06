@@ -13,12 +13,14 @@ get_header(); ?>
 
 	<div class="container">
 		<?php if ( have_posts() ):?>
+			
 			<!-- // Load posts loop. -->
 			<?php while ( have_posts() ) : the_post(); ?>	
 				
-					
+				<?php //get_template_part( 'format', get_post_format() ); ?>
+
 				<?php if( has_post_thumbnail() ):?>						
-					<?php the_post_thumbnail('full', array('class' => 'block mx-auto')); ?>						
+					<?php the_post_thumbnail('large', array('class' => 'block mx-auto')); ?>						
 				<?php endif; ?>
 
 				<?php the_title('<h1>', '</h1>'); ?>

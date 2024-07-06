@@ -65,6 +65,7 @@
             // foreach ($video_attachments as $video) {
             //     $videos[] = wp_get_attachment_url($video->ID);
             // }
+            
 
             // Add location data to the array if both latitude and longitude are available
             // if ($lat && $lng) {
@@ -74,7 +75,7 @@
                     'title' => get_the_title(),
                     'id' => get_the_ID(),
                     'link' => get_permalink(get_the_ID()),
-                    'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'thumbnail'),
+                    'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'homepage-thumb'),
                     // 'description' => $description,
                     // 'images' => implode(',', $images), // comma-separated list of image URLs
                     // 'videos' => implode(',', $videos)  // comma-separated list of video URLs

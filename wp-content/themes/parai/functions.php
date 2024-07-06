@@ -40,12 +40,21 @@ add_theme_support( 'post-thumbnails' );
 add_theme_support( 'responsive-embeds' );
 // Add support for selective refresh for widgets
 add_theme_support( 'customize-selective-refresh-widgets' );
+// Add support for post formats
+add_theme_support( 'post-formats', array( 'video', 'audio', 'gallery', 'aside' ) );
+
 
 
 //// Adding Custom post type called Articles. This custom post type will represent each Parai/Music post containing,text,image,video in the map
 require get_template_directory().'/cpt_articles.php';
 
 
+//add additional image sizes
+add_action( 'after_setup_theme', 'wpdocs_theme_setup' );
+function wpdocs_theme_setup() {
+	// add_image_size( 'category-thumb', 300 ); // 300 pixels wide (and unlimited height)
+	add_image_size( 'homepage-thumb', 300, 169, true ); // (cropped)
+}
 
 
 ?>
