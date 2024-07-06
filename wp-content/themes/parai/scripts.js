@@ -56,7 +56,7 @@ async function initMap() {
             <div class="article_popup ${item.id}">
                 <a href="${item.link}">
                     <img src="${item.thumbnail}" class="">
-                    <h4 class="m-0">${item.title}</h4>
+                    <h6 class="m-0 p-2">${item.title}</h6>
                 </a>
             </div>
         `;
