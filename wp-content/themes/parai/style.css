@@ -1,8 +1,9 @@
-#map {
-  width: 100%;
-  height: calc(100vh - 120px) ;
-}
+#map{width: 100%;}
 
+#map, #sidebar {
+  height: calc(100vh - 120px); 
+}
+#sidebar { overflow-y: scroll;}
 
 
 .gm-style-iw-d, .gm-style-iw.gm-style-iw-c{margin: 0!important; padding: 0!important; overflow: hidden!important;}
