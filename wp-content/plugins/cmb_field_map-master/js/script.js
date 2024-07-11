@@ -12,7 +12,7 @@
 		var mapCanvas = mapInstance.find( '.pw-map' );
 		var latitude = mapInstance.find( '.pw-map-latitude' );
 		var longitude = mapInstance.find( '.pw-map-longitude' );
-		var latLng = new google.maps.LatLng( 54.800685, -4.130859 );
+		var latLng = new google.maps.LatLng(12.983387174935537, 77.58561028073215);
 		var zoom = 5;
 
 		// If we have saved values, let's set the position and zoom level
