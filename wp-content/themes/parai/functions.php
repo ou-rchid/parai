@@ -18,7 +18,7 @@ add_action( 'wp_enqueue_scripts', 'add_style_script');
  * The function below is to make the API accessible in WP-Admin.
  */
 function pw_google_api_key() {
-	return ''; //Insert the API key within ''. Ask Zoe to provide API key.See how to get an API key at: https://developers.google.com/maps/documentation/javascript/get-api-key
+	return 'AIzaSyB8UQmEqkj9DZ4hP5H_cGyGpPYtMtIpIQQ'; //Insert the API key within ''. Ask Zoe to provide API key.See how to get an API key at: https://developers.google.com/maps/documentation/javascript/get-api-key
 }
 add_filter( 'pw_google_api_key', 'pw_google_api_key' );
 
