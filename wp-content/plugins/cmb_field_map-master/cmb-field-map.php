@@ -49,21 +49,31 @@ class PW_CMB2_Field_Google_Maps {
 		$field_type_object->_desc( true, true );
 
 		echo $field_type_object->input( array(
-			'type'       => 'hidden',
+			// 'type'       => 'hidden',
+			'id' => 'location_latitude',
 			'name'       => $field->args('_name') . '[latitude]',
 			'value'      => isset( $field_escaped_value['latitude'] ) ? $field_escaped_value['latitude'] : '',
 			'class'      => 'pw-map-latitude',
-			'desc'       => '',
+			'desc'       => 'latitude',
 		) );
 		echo $field_type_object->input( array(
-			'type'       => 'hidden',
+			// 'type'       => 'hidden',
+			'id' => 'location_longitude',
 			'name'       => $field->args('_name') . '[longitude]',
 			'value'      => isset( $field_escaped_value['longitude'] ) ? $field_escaped_value['longitude'] : '',
 			'class'      => 'pw-map-longitude',
-			'desc'       => '',
+			'desc'       => 'longitude',
 		) );
 
 
+		echo $field_type_object->input( array(
+			// 'type'       => 'hidden',
+			'id' => 'location_polyline',
+			'name'       => $field->args('_name') . '[polyline]',
+			'value'      => isset( $field_escaped_value['polyline'] ) ? $field_escaped_value['polyline'] : '',
+			'class'      => 'pw-map-polyline',
+			'desc'       => 'polyline',
+		) );
 		
 	}
 
