@@ -62,6 +62,9 @@ class PW_CMB2_Field_Google_Maps {
 			'class'      => 'pw-map-longitude',
 			'desc'       => '',
 		) );
+
+
+		
 	}
 
 	/**
