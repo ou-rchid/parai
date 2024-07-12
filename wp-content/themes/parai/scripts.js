@@ -2,7 +2,7 @@
 async function initMap() {
     // Load the necessary libraries from the Google Maps API using the importLibrary method
     const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+    const { AdvancedMarkerElement, PinElement, Polyline } = await google.maps.importLibrary("marker", "polyline");
     // const { Place } = await google.maps.importLibrary("places");
 
 
@@ -18,6 +18,7 @@ async function initMap() {
 
     // Array to store markers
     const markers = [];
+
 
     // Function to create a pin element
     const createPinElement = (glyphColor) => {
@@ -114,6 +115,38 @@ async function initMap() {
         document.getElementById('sidebar').appendChild(sidebarItem);
 
         handleSidebarItemMouseEvents(item, sidebarItem, marker);
+
+        console.log("Item:", item);
+
+
+        // POLYLINES
+        let triangleCoords = [];
+        try {
+            triangleCoords = JSON.parse(item.polyline);
+        } catch (error) {
+            console.error(`Error parsing polyline for item ${index}:`, error);
+            return; // Skip further processing if parsing fails
+        }
+
+        // Verify triangleCoords is an array
+        if (!Array.isArray(triangleCoords)) {
+            console.error(`Invalid polyline format for item ${index}`);
+            return; // Skip further processing if polyline format is invalid
+        }
+
+        // Construct the polygon.
+        const polyline = new google.maps.Polygon({
+            paths: triangleCoords,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 3,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+        });
+
+        polyline.setMap(map);
+
+
     });
 
     // Add event listener to close info window when clicking outside of it
