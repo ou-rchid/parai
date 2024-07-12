@@ -53,11 +53,14 @@ async function initMap() {
     // Function to generate info window content
     const generateInfoWindowContent = (item) => {
         return `
-            <div class="article_popup ${item.id}">
+            <div class="card m-0 p-0 border-0 article_popup ${item.id}">
                 <a href="${item.link}">
                     <img src="${item.thumbnail}" class="">
-                    <h6 class="m-0 p-2">${item.title}</h6>
                 </a>
+                <div class="card-body p-2">
+                    <a href="${item.link}"><h6 class="">${item.title}</h6></a>
+                <p class="m-0 small">Posted on: ${item.date}</p>
+                </div>
             </div>
         `;
     };
@@ -69,10 +72,12 @@ async function initMap() {
         <div class="card ${item.id}">
             <a href="${item.link}">
                 <img src="${item.thumbnail}" class="card-img-top">
-                <div class="card-body p-2">
-                    <h5 class="m-0">${item.title}</h5>
-                </div>
             </a>
+            <div class="card-body p-2">
+                <a href="${item.link}"><h6 class="">${item.title}</h6></a>
+                <p class="m-0 small">Posted on: ${item.date}</p>
+            </div>
+            
         </div>
     `;
     };

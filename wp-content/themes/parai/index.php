@@ -79,6 +79,7 @@
                     'title' => get_the_title(),
                     'id' => get_the_ID(),
                     'link' => get_permalink(get_the_ID()),
+                    'date'=> get_the_date(),
                     'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'homepage-thumb'),
                     // 'description' => $description,
                     // 'images' => implode(',', $images), // comma-separated list of image URLs
