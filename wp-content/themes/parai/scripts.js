@@ -3,11 +3,13 @@ async function initMap() {
     // Load the necessary libraries from the Google Maps API using the importLibrary method
     const { Map } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+    // const { Place } = await google.maps.importLibrary("places");
+
 
     // Create a new map centered on a specific location (India) with a specified zoom level and map ID
     const map = new Map(document.getElementById("map"), {
         center: { lat: 13.036218781849394, lng: 77.69639402182948 },
-        zoom: 7,
+        zoom: 17,
         mapId: "4504f8b37365c3d0",
     });
 
@@ -35,6 +37,9 @@ async function initMap() {
             openInfoWindow = infoWindow;
         });
     };
+
+
+
 
     // Function to handle sidebar item mouse events
     const handleSidebarItemMouseEvents = (item, sidebarItem, marker) => {
@@ -118,6 +123,7 @@ async function initMap() {
             openInfoWindow = null;
         }
     });
+
 
 
 }

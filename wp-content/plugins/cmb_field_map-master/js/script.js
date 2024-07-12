@@ -82,6 +82,15 @@
 
 		// Polyline drawing functionality
 		var polyLineCoordinates = [];
+
+		// If there are saved polyline coordinates, parse and set them
+		if (polylineInput.value.length > 0) {
+			var savedCoordinates = JSON.parse(polylineInput.value);
+			savedCoordinates.forEach(function (coord) {
+				polyLineCoordinates.push(new google.maps.LatLng(coord.lat, coord.lng));
+			});
+		}
+
 		var polyLine = new google.maps.Polyline({
 			map: map,
 			path: polyLineCoordinates,
@@ -102,6 +111,11 @@
 			},
 			draggable: false
 		});
+
+		// Set green marker to the last coordinate of the polyline if it exists
+		if (polyLineCoordinates.length > 0) {
+			greenMarker.setPosition(polyLineCoordinates[polyLineCoordinates.length - 1]);
+		}
 
 		google.maps.event.addListener(map, 'click', function (event) {
 			addLatLng(event.latLng);
@@ -128,6 +142,20 @@
 			// Update hidden input field for polyline coordinates
 			polylineInput.value = JSON.stringify(latLngArray);
 		}
+
+		// Clear polyline function
+		function clearPolyline() {
+			polyLineCoordinates = [];
+			polyLine.setPath(polyLineCoordinates);
+			polylineInput.value = '';
+			greenMarker.setPosition(null); // Hide the green marker
+		}
+
+		// Create clear button
+		var clearButton = document.createElement('button');
+		clearButton.textContent = 'Clear Polyline';
+		clearButton.addEventListener('click', clearPolyline);
+		mapInstance.appendChild(clearButton);
 
 		maps.push(map);
 	}

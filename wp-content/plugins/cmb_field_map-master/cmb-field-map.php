@@ -50,7 +50,7 @@ class PW_CMB2_Field_Google_Maps {
 
 		echo $field_type_object->input( array(
 			// 'type'       => 'hidden',
-			'id' => 'location_latitude',
+			// 'id' => 'location_latitude',
 			'name'       => $field->args('_name') . '[latitude]',
 			'value'      => isset( $field_escaped_value['latitude'] ) ? $field_escaped_value['latitude'] : '',
 			'class'      => 'pw-map-latitude',
@@ -58,7 +58,7 @@ class PW_CMB2_Field_Google_Maps {
 		) );
 		echo $field_type_object->input( array(
 			// 'type'       => 'hidden',
-			'id' => 'location_longitude',
+			// 'id' => 'location_longitude',
 			'name'       => $field->args('_name') . '[longitude]',
 			'value'      => isset( $field_escaped_value['longitude'] ) ? $field_escaped_value['longitude'] : '',
 			'class'      => 'pw-map-longitude',
@@ -68,7 +68,7 @@ class PW_CMB2_Field_Google_Maps {
 
 		echo $field_type_object->input( array(
 			// 'type'       => 'hidden',
-			'id' => 'location_polyline',
+			// 'id' => 'location_polyline',
 			'name'       => $field->args('_name') . '[polyline]',
 			'value'      => isset( $field_escaped_value['polyline'] ) ? $field_escaped_value['polyline'] : '',
 			'class'      => 'pw-map-polyline',
@@ -89,6 +89,11 @@ class PW_CMB2_Field_Google_Maps {
 			if ( ! empty( $value['longitude'] ) ) {
 				update_post_meta( $object_id, $field_args['id'] . '_longitude', $value['longitude'] );
 			}
+
+			if ( ! empty( $value['polyline'] ) ) {
+				update_post_meta( $object_id, $field_args['id'] . '_polyline', $value['polyline'] );
+			}
+
 		}
 
 		return $value;

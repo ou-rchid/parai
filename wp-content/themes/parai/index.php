@@ -46,6 +46,7 @@
             //the Lat Long values of each of the article
             $lat = get_post_meta( get_the_ID(), 'location_latitude', true );
             $lng = get_post_meta( get_the_ID(), 'location_longitude', true );
+            $polyline = get_post_meta( get_the_ID(), 'location_polyline', true );
             
 
             // $location = get_post_meta( get_the_ID(), 'location_hardcoded', true );
@@ -76,6 +77,7 @@
                 $articles[] = array(
                     'lat' => $lat,
                     'lng' => $lng,
+                    'polyline' => $polyline,
                     'title' => get_the_title(),
                     'id' => get_the_ID(),
                     'link' => get_permalink(get_the_ID()),
@@ -104,12 +106,12 @@
         
         <div class="col-sm-10">
          
-                <!-- <input
+                <input
                     id="pac-input"
                     class="controls form-control"
                     type="text"
                     placeholder="Search Area"
-                /> -->
+                />
         
 
             <div id="map" class=""></div>
@@ -154,11 +156,13 @@
     // this is the latest updates on how to include Google Map API
     
     (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "<?php echo pw_google_api_key(); ?>", v: "weekly"});
+        ({key: "<?php echo pw_google_api_key(); ?>", v: "beta"});
 
     // this variable holds the articles data that will be displayed in the map
     var article_locations = <?php echo json_encode($articles); ?>    
+
     console.log(article_locations);
+
 </script>
 
 
