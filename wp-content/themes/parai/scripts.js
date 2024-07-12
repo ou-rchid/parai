@@ -8,8 +8,8 @@ async function initMap() {
 
     // Create a new map centered on a specific location (India) with a specified zoom level and map ID
     const map = new Map(document.getElementById("map"), {
-        center: { lat: 13.036218781849394, lng: 77.69639402182948 },
-        zoom: 17,
+        center: { lat: 11.44129895546545, lng: 77.72918352501114 },
+        zoom: 8,
         mapId: "4504f8b37365c3d0",
     });
 
