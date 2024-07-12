@@ -42,13 +42,17 @@
         while ($query_articles->have_posts()) :
             
             $query_articles->the_post();
-            // print_r(get_the_title());
+            
             //the Lat Long values of each of the article
-            $location = get_post_meta( get_the_ID(), 'location_hardcoded', true );
-            $lat_lng = explode(',', $location);
+            $lat = get_post_meta( get_the_ID(), 'location_latitude', true );
+            $lng = get_post_meta( get_the_ID(), 'location_longitude', true );
+            
 
-            $lat = isset($lat_lng[0]) ? trim($lat_lng[0]) : '';
-            $lng = isset($lat_lng[1]) ? trim($lat_lng[1]) : '';
+            // $location = get_post_meta( get_the_ID(), 'location_hardcoded', true );
+            // $lat_lng = explode(',', $location);
+
+            // $lat = isset($lat_lng[0]) ? trim($lat_lng[0]) : '';
+            // $lng = isset($lat_lng[1]) ? trim($lat_lng[1]) : '';
 
             // $description = get_the_excerpt();
 
@@ -81,15 +85,13 @@
                     // 'videos' => implode(',', $videos)  // comma-separated list of video URLs
                 );
             // }
+
+
         endwhile;
-
-
 
 ?>
 
 <?php
-        // print_r($articles);
-
     endif;
     wp_reset_postdata();
 ?>
@@ -155,7 +157,7 @@
 
     // this variable holds the articles data that will be displayed in the map
     var article_locations = <?php echo json_encode($articles); ?>    
-    // console.log(article_locations);
+    console.log(article_locations);
 </script>
 
 

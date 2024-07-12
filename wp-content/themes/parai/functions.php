@@ -14,13 +14,15 @@ add_action( 'wp_enqueue_scripts', 'add_style_script');
 
 
 /**
- * We will be using Google MAP AI to map the "articles"  
- * The function below is to make the API accessible in WP-Admin.
+ * We will be using Google MAP API to map the "articles"  
+ * The function below is to make the API accessible using <?php echo pw_google_api_key(); ?>.
  */
 function pw_google_api_key() {
-	return 'AIzaSyB8UQmEqkj9DZ4hP5H_cGyGpPYtMtIpIQQ'; //Insert the API key within ''. Ask Zoe to provide API key.See how to get an API key at: https://developers.google.com/maps/documentation/javascript/get-api-key
+	return 'AIzaSyB8UQmEqkj9DZ4hP5H_cGyGpPYtMtIpIQQ'; //Insert the API key within ''. 
 }
 add_filter( 'pw_google_api_key', 'pw_google_api_key' );
+
+
 
 
 
