@@ -23,7 +23,7 @@
             'description'         => __( 'Article news and reviews', 'parai' ),
             'labels'              => $labels,
             'supports'            => array( 'title', 'editor','template', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields','post-formats'),
-            'taxonomies'          => array( 'category', 'post_tag' ),
+            // 'taxonomies'          => array( 'category', 'post_tag' ),
             'hierarchical'        => true,
             'public'              => true,
             'show_ui'             => true,
@@ -87,4 +87,46 @@
     }
 
 
+
+
+
+
+/**
+ * Add custom taxonomies
+ *
+ * Additional custom taxonomies can be defined here
+ * https://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+function add_article_type_taxonomy() {
+    // Add new "Locations" taxonomy to Posts
+    register_taxonomy('article_type', 'articles', array(
+      // Hierarchical taxonomy (like categories)
+      'hierarchical' => true,
+      // This array of options controls the labels displayed in the WordPress Admin UI
+      'labels' => array(
+        'name' => _x( 'Article Types', 'taxonomy general name' ),
+        'singular_name' => _x( 'Article Type', 'taxonomy singular name' ),
+        'search_items' =>  __( 'Search Article Types' ),
+        'all_items' => __( 'All Article Types' ),
+        'parent_item' => __( 'Parent Article Type' ),
+        'parent_item_colon' => __( 'Parent Article Type:' ),
+        'edit_item' => __( 'Edit Article Type' ),
+        'update_item' => __( 'Update Article Type' ),
+        'add_new_item' => __( 'Add New Article Type' ),
+        'new_item_name' => __( 'New Article Type Name' ),
+        'menu_name' => __( 'Article Types' ),
+      ),
+      // Control the slugs used for this taxonomy
+      'rewrite' => array(
+        'slug' => 'article_types', // This controls the base slug that will display before each term
+        'with_front' => false, // Don't display the category base before "/article_types/"
+        'hierarchical' => true // This will allow URL's like "/article_types/boston/cambridge/"
+      ),
+    ));
+  }
+  add_action( 'init', 'add_article_type_taxonomy', 0 );
+
+
 ?>
+
+

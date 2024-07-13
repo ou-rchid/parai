@@ -3,10 +3,10 @@ async function initMap() {
         // Load the necessary libraries from the Google Maps API using the importLibrary method
         const { Map } = await google.maps.importLibrary("maps");
         const { AdvancedMarkerElement, PinElement, Polyline } = await google.maps.importLibrary("marker", "polyline");
-        
+
         // Create a new map centered on a specific location (India) with a specified zoom level and map ID
         const map = new Map(document.getElementById("map"), {
-            center: { lat: 11.44129895546545, lng: 77.72918352501114 },
+            center: { lat: 9.927813363492257, lng: 78.12179368172984 },
             zoom: 8,
             mapId: "4504f8b37365c3d0",
         });
@@ -55,13 +55,14 @@ async function initMap() {
         // Function to generate info window content
         const generateInfoWindowContent = (item) => {
             return `
-                <div class="card m-0 p-0 border-0 article_popup ${item.id}">
+                <div class=" m-0 p-0 border-0 article_popup ${item.id}">
                     <a href="${item.link}">
                         <img src="${item.thumbnail}" class="">
                     </a>
                     <div class="card-body p-2">
                         <a href="${item.link}"><h6 class="">${item.title}</h6></a>
-                    <p class="m-0 small">Posted on: ${item.date}</p>
+                        <p class="m-0 small">Posted on: ${item.date}</p>
+                        <span class="badge badge-secondary">${item.article_type}</span>
                     </div>
                 </div>
             `;
@@ -77,6 +78,7 @@ async function initMap() {
                     <div class="card-body p-2">
                         <a href="${item.link}"><h6 class="">${item.title}</h6></a>
                         <p class="m-0 small">Posted on: ${item.date}</p>
+                        <span class="badge badge-secondary">${item.article_type}</span>
                     </div>
                 </div>
             `;

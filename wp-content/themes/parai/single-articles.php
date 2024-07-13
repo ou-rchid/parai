@@ -19,9 +19,9 @@ get_header(); ?>
 				
 				<?php //get_template_part( 'format', get_post_format() ); ?>
 
-				<?php if( has_post_thumbnail() ):?>						
-					<?php the_post_thumbnail('large', array('class' => 'block mx-auto')); ?>						
-				<?php endif; ?>
+				<?php // if( has_post_thumbnail() ):?>						
+					<?php // the_post_thumbnail('large', array('class' => 'block mx-auto')); ?>						
+				<?php// endif; ?>
 
 				<?php the_title('<h1>', '</h1>'); ?>
 					

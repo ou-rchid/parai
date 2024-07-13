@@ -18,21 +18,20 @@
 
 <?php get_header(); ?>
 
-    
+
 
 <?php    
     // Query to fetch all articles to show the article in the map
     // How to query a custom post types: https://developer.wordpress.org/plugins/post-types/working-with-custom-post-types/
-    $args = array(
-        'post_type' => 'articles',
-        // 'posts_per_page' => -1,
-        'paged'=>get_query_var('paged') ? get_query_var('paged') : 1,
-    );
     
     // Array to store article data (title, location lat long, link, featured image) for the map
     $articles = array();
 
-    $query_articles = new WP_Query($args);
+    $query_articles = new WP_Query(array(
+        'post_type' => 'articles',
+        // 'posts_per_page' => -1,
+        'paged'=>get_query_var('paged') ? get_query_var('paged') : 1,
+    ));
 
     // Loop through each article and extract necessary data (title, featured image, location lat long)
     if ($query_articles->have_posts()) :?>
@@ -48,7 +47,7 @@
             $lng = get_post_meta( get_the_ID(), 'location_longitude', true );
             $polyline = get_post_meta( get_the_ID(), 'location_polyline', true );
             
-
+            
             // $location = get_post_meta( get_the_ID(), 'location_hardcoded', true );
             // $lat_lng = explode(',', $location);
 
@@ -71,7 +70,12 @@
             //     $videos[] = wp_get_attachment_url($video->ID);
             // }
             
-
+            
+            $terms = get_the_terms( get_the_ID(), 'article_type' );
+            $terms = join(', ', wp_list_pluck( $terms , 'name') );
+        
+            // print_r($terms);
+            
             // Add location data to the array if both latitude and longitude are available
             // if ($lat && $lng) {
                 $articles[] = array(
@@ -82,6 +86,7 @@
                     'id' => get_the_ID(),
                     'link' => get_permalink(get_the_ID()),
                     'date'=> get_the_date(),
+                    'article_type'=>$terms,
                     'thumbnail' => get_the_post_thumbnail_url(get_the_ID(), 'homepage-thumb'),
                     // 'description' => $description,
                     // 'images' => implode(',', $images), // comma-separated list of image URLs
